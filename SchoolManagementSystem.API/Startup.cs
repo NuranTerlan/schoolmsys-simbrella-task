@@ -10,8 +10,12 @@ using Microsoft.Extensions.Hosting;
 using SchoolManagementSystem.API.Data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.OpenApi.Models;
+using SchoolManagementSystem.API.Options;
 
 namespace SchoolManagementSystem.API
 {
@@ -32,8 +36,24 @@ namespace SchoolManagementSystem.API
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+
+            services.AddSwaggerGen(act =>
+            {
+                act.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "School Management System API",
+                    Version = "v1",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Nuran Terlan",
+                        Email = "nuran.terlan@mail.ru"
+                    }
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                act.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +67,15 @@ namespace SchoolManagementSystem.API
             {
                 app.UseHsts();
             }
+
+            var swaggerOptions = new SwaggerOptions();
+            Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
