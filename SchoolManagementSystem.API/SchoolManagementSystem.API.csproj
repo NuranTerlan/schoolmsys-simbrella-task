@@ -24,4 +24,8 @@
     <Folder Include="Controllers\V1\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolManagementSystem.Infrastructure\SchoolManagementSystem.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
