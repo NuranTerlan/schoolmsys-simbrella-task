@@ -14,7 +14,7 @@ namespace SchoolManagementSystem.Domain.Entities
         [MaxLength(5)]
         public string IndividualRoom { get; set; }
         public byte CountOfExperienceYears { get; set; }
-        public byte CountOfYearsInThisSchool { get; set; }
+        public AcademicDegree AcademicDegree { get; set; }
 
         public virtual ICollection<TeacherClass> TeacherClasses { get; set; }
     }
