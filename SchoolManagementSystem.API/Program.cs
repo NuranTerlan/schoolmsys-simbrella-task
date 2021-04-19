@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SchoolManagementSystem.Infrastructure.Data;
+using SchoolManagementSystem.MainInfrastructure.Data;
 
 namespace SchoolManagementSystem.API
 {
@@ -26,6 +26,8 @@ namespace SchoolManagementSystem.API
                 logger.LogError(e, $"An error occured while migrating or seeding the database: {e.Message}");
                 throw;
             }
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
