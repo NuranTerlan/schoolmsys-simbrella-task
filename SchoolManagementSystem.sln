@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolManagementSystem.API", "SchoolManagementSystem.API\SchoolManagementSystem.API.csproj", "{6595D512-846F-4493-8348-F6F62F40BFD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem.Application", "SchoolManagementSystem.Application\SchoolManagementSystem.Application.csproj", "{DF9A5C9D-600D-448F-8B8E-0277BD78F3DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolManagementSystem.Application", "SchoolManagementSystem.Application\SchoolManagementSystem.Application.csproj", "{DF9A5C9D-600D-448F-8B8E-0277BD78F3DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem.Domain", "SchoolManagementSystem.Domain\SchoolManagementSystem.Domain.csproj", "{604E3600-A647-4304-AD07-6F9BA50FE4B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolManagementSystem.Domain", "SchoolManagementSystem.Domain\SchoolManagementSystem.Domain.csproj", "{604E3600-A647-4304-AD07-6F9BA50FE4B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem.Infrastructure", "SchoolManagementSystem.Infrastructure1\SchoolManagementSystem.Infrastructure.csproj", "{4AF5216E-DB78-481B-9E49-014F80D99363}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolManagementSystem.Infrastructure", "SchoolManagementSystem.Infrastructure\SchoolManagementSystem.Infrastructure.csproj", "{8CC8981B-6E89-4407-8225-EAA6182F904B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{604E3600-A647-4304-AD07-6F9BA50FE4B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{604E3600-A647-4304-AD07-6F9BA50FE4B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{604E3600-A647-4304-AD07-6F9BA50FE4B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AF5216E-DB78-481B-9E49-014F80D99363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AF5216E-DB78-481B-9E49-014F80D99363}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AF5216E-DB78-481B-9E49-014F80D99363}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AF5216E-DB78-481B-9E49-014F80D99363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CC8981B-6E89-4407-8225-EAA6182F904B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CC8981B-6E89-4407-8225-EAA6182F904B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CC8981B-6E89-4407-8225-EAA6182F904B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC8981B-6E89-4407-8225-EAA6182F904B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
