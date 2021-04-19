@@ -24,12 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\V1\" />
+    <ProjectReference Include="..\SchoolManagementSystem.Infrastructure1\SchoolManagementSystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\SchoolManagementSystem.MainInfrastructure\SchoolManagementSystem.MainInfrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SchoolManagementSystem.Infrastructure1\SchoolManagementSystem.Infrastructure.csproj" />
-    <ProjectReference Include="..\SchoolManagementSystem.Infrastructure\SchoolManagementSystem.Infrastructure.csproj" />
+    <Folder Include="Controllers\V1\" />
   </ItemGroup>
 
 </Project>
