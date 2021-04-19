@@ -8,7 +8,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 using SchoolManagementSystem.API.Options;
-using SchoolManagementSystem.Infrastructure;
+using SchoolManagementSystem.MainInfrastructure;
 
 namespace SchoolManagementSystem.API
 {
@@ -41,9 +41,9 @@ namespace SchoolManagementSystem.API
                     }
                 });
 
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                act.IncludeXmlComments(xmlPath);
+                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                //act.IncludeXmlComments(xmlPath);
             });
         }
 
