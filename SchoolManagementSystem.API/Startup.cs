@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.IO;
-using System.Reflection;
 using Microsoft.OpenApi.Models;
 using SchoolManagementSystem.API.Options;
+using SchoolManagementSystem.API.Services;
+using SchoolManagementSystem.Application;
+using SchoolManagementSystem.Application.Commons.Interfaces;
 using SchoolManagementSystem.MainInfrastructure;
 
 namespace SchoolManagementSystem.API
@@ -25,8 +25,11 @@ namespace SchoolManagementSystem.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfrastructure(Configuration);
+            services.AddApplication();
 
-            services.AddControllersWithViews();
+            services.AddScoped<ICurrentUser, CurrentUserService>();
+
+            services.AddControllers();
 
             services.AddSwaggerGen(act =>
             {
