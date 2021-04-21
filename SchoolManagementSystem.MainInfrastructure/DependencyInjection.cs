@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolManagementSystem.Application.Commons.Interfaces;
@@ -20,6 +21,10 @@ namespace SchoolManagementSystem.MainInfrastructure
                         .MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             services.AddIdentity<ApplicationUser, AppUserRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddTransient<UserManager<ApplicationUser>>();
+            services.AddTransient<RoleManager<AppUserRole>>();
+            //services.AddTransient<IRoleStore<AppUserRole>, RoleStore<AppUserRole>>();
 
             services.AddScoped<IApplicationDbContext>(provider =>
                 provider.GetService<ApplicationDbContext>());
