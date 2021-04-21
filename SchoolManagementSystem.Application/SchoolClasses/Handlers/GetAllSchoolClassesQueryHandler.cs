@@ -24,7 +24,7 @@ namespace SchoolManagementSystem.Application.SchoolClasses.Handlers
 
         public async Task<Response<IList<SchoolClassDto>>> Handle(GetAllSchoolClassesQuery request, CancellationToken cancellationToken)
         {
-            var classes = await _context.SchoolClasses.AsNoTracking().ToListAsync(cancellationToken: cancellationToken);
+            var classes = await _context.SchoolClasses.AsNoTracking().Include(c => c.Students).ToListAsync(cancellationToken: cancellationToken);
             if (classes is null)
             {
                 return Response.Fail<IList<SchoolClassDto>>("An error occured while fetching data!");
