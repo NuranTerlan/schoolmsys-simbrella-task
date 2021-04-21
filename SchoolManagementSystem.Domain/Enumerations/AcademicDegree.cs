@@ -2,7 +2,7 @@
 {
     public enum AcademicDegree
     {
-        Diploma,
+        Diploma = 1,
         Associate,
         Bachelor,
         Master,
