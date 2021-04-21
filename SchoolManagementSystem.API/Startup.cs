@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using SchoolManagementSystem.API.Installers;
 using SchoolManagementSystem.API.Options;
 using SchoolManagementSystem.API.Services;
 using SchoolManagementSystem.Application;
@@ -25,28 +27,15 @@ namespace SchoolManagementSystem.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddInfrastructure(Configuration);
-            services.AddApplication();
+            services.AddApplication(Configuration);
 
             services.AddScoped<ICurrentUser, CurrentUserService>();
 
-            services.AddControllers();
+            services.InstallServices(Configuration);
 
-            services.AddSwaggerGen(act =>
+            services.AddControllers().AddNewtonsoftJson(options =>
             {
-                act.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "School Management System API",
-                    Version = "v1",
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Nuran Terlan",
-                        Email = "nuran.terlan@mail.ru"
-                    }
-                });
-
-                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                //act.IncludeXmlComments(xmlPath);
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
         }
 
@@ -73,7 +62,14 @@ namespace SchoolManagementSystem.API
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseCors(pb => 
+                pb.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
