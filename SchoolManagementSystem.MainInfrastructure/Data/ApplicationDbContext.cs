@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagementSystem.Application.Commons.Interfaces;
@@ -56,6 +58,18 @@ namespace SchoolManagementSystem.MainInfrastructure.Data
             return await base.SaveChangesAsync(cancellationToken);
         }
 
+        public void DetachAllEntities()
+        {
+            var changedEntriesCopy = this.ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Added ||
+                            e.State == EntityState.Modified ||
+                            e.State == EntityState.Deleted).ToList();
+            foreach (var entityEntry in changedEntriesCopy)
+            {
+                entityEntry.State = EntityState.Detached;
+            }
+        }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    base.OnConfiguring(optionsBuilder);
@@ -70,9 +84,8 @@ namespace SchoolManagementSystem.MainInfrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            GenerateUser.SeedAdminUser("devvhale", "devvhale@gmail.com", modelBuilder);
-            GenerateUser.SeedTeacherRole(modelBuilder);
-            GenerateUser.SeedStudentRole(modelBuilder);
+            GenerateUser.SeedAdminUser("devvhale", 
+                "devvhale@gmail.com", modelBuilder);
 
             modelBuilder.Entity<ApplicationUser>().ToTable("Users");
             modelBuilder.Entity<AppUserRole>().ToTable("Roles");
