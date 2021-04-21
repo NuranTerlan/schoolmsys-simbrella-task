@@ -3,21 +3,73 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagementSystem.MainInfrastructure.Data;
 
 namespace SchoolManagementSystem.MainInfrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210421062815_Fixed-Issues")]
+    partial class FixedIssues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a1bb5179-59a8-471e-a29a-90065b471062",
+                            ConcurrencyStamp = "a1bb5179-59a8-471e-a29a-90065b471062",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "bcf2deb6-1dc6-4dfd-a8be-573f3f998af1",
+                            ConcurrencyStamp = "bcf2deb6-1dc6-4dfd-a8be-573f3f998af1",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
+                        },
+                        new
+                        {
+                            Id = "9cd957ee-1c33-494e-b153-cc9a4a4edead",
+                            ConcurrencyStamp = "9cd957ee-1c33-494e-b153-cc9a4a4edead",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        });
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
@@ -108,16 +160,6 @@ namespace SchoolManagementSystem.MainInfrastructure.Migrations
                         {
                             UserId = "8691d119-f241-474a-bf88-3941618e5caf",
                             RoleId = "a1bb5179-59a8-471e-a29a-90065b471062"
-                        },
-                        new
-                        {
-                            UserId = "8691d119-f241-474a-bf88-3941618e5caf",
-                            RoleId = "bcf2deb6-1dc6-4dfd-a8be-573f3f998af1"
-                        },
-                        new
-                        {
-                            UserId = "8691d119-f241-474a-bf88-3941618e5caf",
-                            RoleId = "9cd957ee-1c33-494e-b153-cc9a4a4edead"
                         });
                 });
 
@@ -138,62 +180,6 @@ namespace SchoolManagementSystem.MainInfrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("SchoolManagementSystem.Domain.Commons.AppUserRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "a1bb5179-59a8-471e-a29a-90065b471062",
-                            ConcurrencyStamp = "a1bb5179-59a8-471e-a29a-90065b471062",
-                            Description = "Admin can manage everything in app",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "bcf2deb6-1dc6-4dfd-a8be-573f3f998af1",
-                            ConcurrencyStamp = "bcf2deb6-1dc6-4dfd-a8be-573f3f998af1",
-                            Description = "Teacher can report, schedule exam dates, give marks etc.",
-                            Name = "Teacher",
-                            NormalizedName = "TEACHER"
-                        },
-                        new
-                        {
-                            Id = "9cd957ee-1c33-494e-b153-cc9a4a4edead",
-                            ConcurrencyStamp = "9cd957ee-1c33-494e-b153-cc9a4a4edead",
-                            Description = "Students can check their exam dates, marks etc.",
-                            Name = "Student",
-                            NormalizedName = "STUDENT"
-                        });
                 });
 
             modelBuilder.Entity("SchoolManagementSystem.Domain.Commons.ApplicationUser", b =>
@@ -303,9 +289,9 @@ namespace SchoolManagementSystem.MainInfrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DEVVHALE@GMAIL.COM",
                             NormalizedUserName = "DEVVHALE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHbQf/Y8sHRkceDXi+2TaTWyIQBRPL1crXBBD0RiGPlvm7Ra48Q+wUPR5uxtNOmbNg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKEcr3Lv2BkqN9mG1H949nzGRuP3Q5NdYdwHKmRAAgqvZynBu+zRX8uc0AuR4MLV6g==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c8adf49b-dd6d-4c3f-ae57-584618224020",
+                            SecurityStamp = "75fa774e-4735-4e20-a89c-3084b1388480",
                             TwoFactorEnabled = true,
                             UserName = "devvhale"
                         });
@@ -433,7 +419,7 @@ namespace SchoolManagementSystem.MainInfrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("SchoolManagementSystem.Domain.Commons.AppUserRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -460,7 +446,7 @@ namespace SchoolManagementSystem.MainInfrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("SchoolManagementSystem.Domain.Commons.AppUserRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)

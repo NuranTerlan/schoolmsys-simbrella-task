@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagementSystem.MainInfrastructure.Data;
 
 namespace SchoolManagementSystem.MainInfrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210421111132_All-Roles-Added-To-Admin")]
+    partial class AllRolesAddedToAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,9 +305,9 @@ namespace SchoolManagementSystem.MainInfrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DEVVHALE@GMAIL.COM",
                             NormalizedUserName = "DEVVHALE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHbQf/Y8sHRkceDXi+2TaTWyIQBRPL1crXBBD0RiGPlvm7Ra48Q+wUPR5uxtNOmbNg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOHYxswY4SMi9sB9YdJYLm6UrvQzOZ7GLy4lq6xZInRcHNPiDwT18HzziWc06KY6Fw==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c8adf49b-dd6d-4c3f-ae57-584618224020",
+                            SecurityStamp = "1c3d8ea3-9c32-4ee4-94ae-5bfc57543479",
                             TwoFactorEnabled = true,
                             UserName = "devvhale"
                         });

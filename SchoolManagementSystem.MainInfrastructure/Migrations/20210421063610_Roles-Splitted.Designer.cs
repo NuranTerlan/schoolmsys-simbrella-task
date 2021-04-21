@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagementSystem.MainInfrastructure.Data;
 
 namespace SchoolManagementSystem.MainInfrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210421063610_Roles-Splitted")]
+    partial class RolesSplitted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,16 +110,6 @@ namespace SchoolManagementSystem.MainInfrastructure.Migrations
                         {
                             UserId = "8691d119-f241-474a-bf88-3941618e5caf",
                             RoleId = "a1bb5179-59a8-471e-a29a-90065b471062"
-                        },
-                        new
-                        {
-                            UserId = "8691d119-f241-474a-bf88-3941618e5caf",
-                            RoleId = "bcf2deb6-1dc6-4dfd-a8be-573f3f998af1"
-                        },
-                        new
-                        {
-                            UserId = "8691d119-f241-474a-bf88-3941618e5caf",
-                            RoleId = "9cd957ee-1c33-494e-b153-cc9a4a4edead"
                         });
                 });
 
@@ -303,9 +295,9 @@ namespace SchoolManagementSystem.MainInfrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DEVVHALE@GMAIL.COM",
                             NormalizedUserName = "DEVVHALE",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHbQf/Y8sHRkceDXi+2TaTWyIQBRPL1crXBBD0RiGPlvm7Ra48Q+wUPR5uxtNOmbNg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMcAwJQuYrZPAeD0vgW5ikcLWmKLGW86Al6OGKo86T2UFCSjGslXbDKFZ4oGYup0Tw==",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c8adf49b-dd6d-4c3f-ae57-584618224020",
+                            SecurityStamp = "ee961eb5-5868-45a0-af40-400f817ea544",
                             TwoFactorEnabled = true,
                             UserName = "devvhale"
                         });
