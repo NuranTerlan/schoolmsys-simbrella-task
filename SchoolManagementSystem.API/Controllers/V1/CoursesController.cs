@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.API.Contracts;
 using SchoolManagementSystem.Application.Courses.Commands;
@@ -6,6 +8,8 @@ using SchoolManagementSystem.Application.Courses.Queries;
 
 namespace SchoolManagementSystem.API.Controllers.V1
 {
+    [Authorize(Roles = "Admin,Student,Teacher")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CoursesController : ApiController
     {
         [HttpGet(ApiRoutesV1.Courses.GetAll)]
@@ -22,6 +26,7 @@ namespace SchoolManagementSystem.API.Controllers.V1
             return Ok(await Mediator.Send(query));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost(ApiRoutesV1.Courses.Create)]
         public async Task<IActionResult> Create([FromBody] CreateCourseCommand command)
         {
@@ -33,6 +38,7 @@ namespace SchoolManagementSystem.API.Controllers.V1
             return Created(locationUri, result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut(ApiRoutesV1.Courses.Update)]
         public async Task<IActionResult> Update([FromRoute] int courseId,
             [FromBody] UpdateCourseCommand command)
@@ -41,6 +47,7 @@ namespace SchoolManagementSystem.API.Controllers.V1
             return Ok(await Mediator.Send(command));
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete(ApiRoutesV1.Courses.Delete)]
         public async Task<IActionResult> Delete([FromRoute] int courseId)
         {
