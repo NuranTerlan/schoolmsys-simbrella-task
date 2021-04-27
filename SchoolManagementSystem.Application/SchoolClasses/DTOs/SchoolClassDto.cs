@@ -13,5 +13,6 @@ namespace SchoolManagementSystem.Application.SchoolClasses.DTOs
         public string Title { get; set; }
         public string RoomNumber { get; set; }
         public ICollection<Student> Students { get; set; }
+        public string PsychologistId { get; set; }
     }
 }
