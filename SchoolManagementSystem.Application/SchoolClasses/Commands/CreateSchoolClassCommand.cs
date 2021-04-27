@@ -7,5 +7,6 @@ namespace SchoolManagementSystem.Application.SchoolClasses.Commands
     {
         public string Title { get; set; }
         public string RoomNumber { get; set; }
+        public string PsychologistId { get; set; }
     }
 }
