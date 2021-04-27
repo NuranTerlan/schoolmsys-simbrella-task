@@ -8,8 +8,9 @@ namespace SchoolManagementSystem.Application.SchoolClasses.Validators
     {
         public CreateSchoolClassCommandValidator()
         {
-            RuleFor(c => c.Title).NotEmpty().MinimumLength(3);
+            RuleFor(c => c.Title).NotEmpty().MinimumLength(2);
             RuleFor(c => c.RoomNumber).NotEmpty();
+            RuleFor(c => c.PsychologistId).NotEmpty();
         }
     }
 }
