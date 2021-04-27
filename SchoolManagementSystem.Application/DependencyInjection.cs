@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using SchoolManagementSystem.Application.Commons.Behaviors;
 using SchoolManagementSystem.Application.Options;
-using SchoolManagementSystem.Application.Students.Commands;
+using SchoolManagementSystem.Application.Teachers.Commands;
 
 namespace SchoolManagementSystem.Application
 {
@@ -17,7 +17,7 @@ namespace SchoolManagementSystem.Application
         public static IServiceCollection AddApplication(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddMediatR(typeof(RegisterStudentCommand));
+            services.AddMediatR(typeof(RegisterTeacherCommand));
             services.AddTransient(typeof(IPipelineBehavior<,>),
                 typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
