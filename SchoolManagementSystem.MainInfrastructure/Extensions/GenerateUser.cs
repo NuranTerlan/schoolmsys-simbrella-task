@@ -15,6 +15,7 @@ namespace SchoolManagementSystem.MainInfrastructure.Extensions
             const string adminRoleId = "a1bb5179-59a8-471e-a29a-90065b471062";
             const string teacherRoleId = "bcf2deb6-1dc6-4dfd-a8be-573f3f998af1";
             const string studentRoleId = "9cd957ee-1c33-494e-b153-cc9a4a4edead";
+            const string psychologistRoleId = "2403f407-e7bf-4c60-ade2-fc36f26afc55";
 
             var user = new ApplicationUser
             {
@@ -61,6 +62,14 @@ namespace SchoolManagementSystem.MainInfrastructure.Extensions
                     NormalizedName = Role.Student.ToString().ToUpper(),
                     Description = "Students can check their exam dates, marks etc.",
                     ConcurrencyStamp = studentRoleId
+                },
+                new AppUserRole
+                {
+                    Id = psychologistRoleId,
+                    Name = Role.Psychologist.ToString(),
+                    NormalizedName = Role.Psychologist.ToString().ToUpper(),
+                    Description = "Psychologists can give motivation to students",
+                    ConcurrencyStamp = psychologistRoleId
                 }
             };
 
