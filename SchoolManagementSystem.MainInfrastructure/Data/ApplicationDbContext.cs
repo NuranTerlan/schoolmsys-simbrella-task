@@ -30,6 +30,7 @@ namespace SchoolManagementSystem.MainInfrastructure.Data
         public DbSet<SchoolClass> SchoolClasses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Psychologist> Psychologists { get; set; }
         public DbSet<TeacherClass> TeacherClasses { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -92,6 +93,7 @@ namespace SchoolManagementSystem.MainInfrastructure.Data
 
             modelBuilder.Entity<Student>().ToTable("Students");
             modelBuilder.Entity<Teacher>().ToTable("Teachers");
+            modelBuilder.Entity<Psychologist>().ToTable("Psychologists");
 
             modelBuilder.Entity<Student>()
                 .HasOne(s => s.SchoolClass)
