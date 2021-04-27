@@ -32,7 +32,7 @@ namespace SchoolManagementSystem.Application.Students.Handlers
             }
 
             var result = _mapper.Map<IList<StudentDto>>(students);
-            return Response.Success(result, "Students fetched successfully.");
+            return Response.Success<IList<StudentDto>>(result, "Students fetched successfully.");
         }
     }
 }
