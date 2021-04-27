@@ -4,6 +4,7 @@
     {
         Admin = 1,
         Teacher,
-        Student
+        Student,
+        Psychologist
     }
 }
