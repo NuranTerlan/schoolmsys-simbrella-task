@@ -16,5 +16,7 @@ namespace SchoolManagementSystem.Domain.Entities
 
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<TeacherClass> TeacherClasses { get; set; }
+        public virtual string PsychologistId { get; set; }
+        public virtual Psychologist Psychologist { get; set; }
     }
 }
