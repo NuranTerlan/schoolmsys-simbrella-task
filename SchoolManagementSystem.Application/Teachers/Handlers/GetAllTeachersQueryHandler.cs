@@ -36,7 +36,7 @@ namespace SchoolManagementSystem.Application.Teachers.Handlers
             }
 
             var result = _mapper.Map<IList<TeacherDto>>(teachers);
-            return Response.Success(result, "Teachers fetched successfully.");
+            return Response.Success<IList<TeacherDto>>(result, "Teachers fetched successfully.");
         }
     }
 }
