@@ -43,6 +43,14 @@
                 public const string Login = TeacherSpecificBase + "/login";
                 public const string Register = TeacherSpecificBase + "/register";
             }
+
+            public static class Psychologist
+            {
+                public const string PsychologistSpecificBase = IdentityBase + "/psychologist";
+
+                public const string Login = PsychologistSpecificBase + "/login";
+                public const string Register = PsychologistSpecificBase + "/register";
+            }
         }
 
         public static class Students
@@ -61,6 +69,15 @@
             public const string Create = Base + "/teachers";
             public const string Update = GetAll + "/{teacherId}";
             public const string Delete = GetAll + "/{teacherId}";
+        }
+
+        public static class Psychologist
+        {
+            public const string GetAll = Base + "/psychologists";
+            public const string GetById = GetAll + "/{psychologistId}";
+            public const string Create = Base + "/psychologists";
+            public const string Update = GetAll + "/{psychologistId}";
+            public const string Delete = GetAll + "/{psychologistId}";
         }
 
         public static class TeacherClasses
