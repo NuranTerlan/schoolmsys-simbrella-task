@@ -34,6 +34,13 @@ namespace SchoolManagementSystem.Application.Students.Handlers
 
         public async Task<Response<AuthResultDto>> Handle(RegisterStudentCommand request, CancellationToken cancellationToken)
         {
+            var existingStudent = await _userManager.FindByEmailAsync(request.Email);
+
+            if (existingStudent != null)
+            {
+                return Response.Fail<AuthResultDto>($"User with this email ({request.Email} already exists)");
+            }
+
             var schoolClass = await _context.SchoolClasses.AsNoTracking()
                 .SingleOrDefaultAsync(c => c.Id == request.SchoolClassId, cancellationToken);
             if (schoolClass is null)
@@ -42,16 +49,10 @@ namespace SchoolManagementSystem.Application.Students.Handlers
                     $"In our school we don't have class with Id#{request.SchoolClassId}");
             }
 
-            var existingStudent = await _userManager.FindByEmailAsync(request.Email);
-
-            if (existingStudent != null)
-            {
-                return Response.Fail<AuthResultDto>($"User with this email ({request.Email} already exists)");
-            }
-
             try
             {
                 var newUser = _mapper.Map<Student>(request);
+                newUser.AbsentMarkCount = 0;
                 newUser.NormalizedEmail = request.Email.ToUpper();
                 var ph = new PasswordHasher<Student>();
                 newUser.PasswordHash = ph.HashPassword(newUser, request.Password);
