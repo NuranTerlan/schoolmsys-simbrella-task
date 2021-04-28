@@ -32,12 +32,22 @@ namespace SchoolManagementSystem.Application.SchoolClasses.Handlers
                 return Response.Fail<SchoolClassDto>($"Class#{request.Id} isn't found or an error occured while fetching related data!");
             }
 
+            var psychologist = await _context.Psychologists.AsNoTracking()
+                .SingleOrDefaultAsync(c => c.Id == request.PsychologistId,
+                    cancellationToken);
+
+            if (psychologist is null)
+            {
+                return Response.Fail<SchoolClassDto>($"Psychologist with ID#{request.PsychologistId} is not found!");
+            }
+
             var updatedClass = new SchoolClassDto
             {
                 Id = schoolClass.Id,
                 Title = request.Title,
                 RoomNumber = request.RoomNumber,
-                CreatedOn = schoolClass.CreatedOn
+                CreatedOn = schoolClass.CreatedOn,
+                PsychologistId = request.PsychologistId
             };
 
             _context.SchoolClasses.Update(_mapper.Map<SchoolClass>(updatedClass));
