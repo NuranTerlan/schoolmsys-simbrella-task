@@ -59,6 +59,8 @@
             public const string GetById = GetAll + "/{studentId}";
             public const string Create = Base + "/students";
             public const string Update = GetAll + "/{studentId}";
+            public const string IncreaseAbsentMark = GetAll + "/increaseabsentmark/{studentId}";
+            public const string DecreaseAbsentMark = GetAll + "/decreaseabsentmark/{studentId}";
             public const string Delete = GetAll + "/{studentId}";
         }
 
