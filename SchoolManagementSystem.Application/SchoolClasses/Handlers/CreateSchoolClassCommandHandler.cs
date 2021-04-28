@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SchoolManagementSystem.Application.Commons.Interfaces;
 using SchoolManagementSystem.Application.SchoolClasses.Commands;
 using SchoolManagementSystem.Application.SchoolClasses.DTOs;
@@ -23,6 +24,15 @@ namespace SchoolManagementSystem.Application.SchoolClasses.Handlers
 
         public async Task<Response<SchoolClassDto>> Handle(CreateSchoolClassCommand request, CancellationToken cancellationToken)
         {
+            var psychologist = await _context.Psychologists.AsNoTracking()
+                .SingleOrDefaultAsync(c => c.Id == request.PsychologistId,
+                    cancellationToken);
+
+            if (psychologist is null)
+            {
+                return Response.Fail<SchoolClassDto>($"Psychologist with ID#{request.PsychologistId} is not found!");
+            }
+
             var newClass = _mapper.Map<SchoolClass>(request);
             await _context.SchoolClasses.AddAsync(newClass, cancellationToken);
             var isAdded = await _context.SaveChangesAsync(cancellationToken);
