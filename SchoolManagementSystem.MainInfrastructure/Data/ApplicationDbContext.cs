@@ -101,6 +101,11 @@ namespace SchoolManagementSystem.MainInfrastructure.Data
                 .HasForeignKey(s => s.SchoolClassId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<SchoolClass>()
+                .HasOne(c => c.Psychologist)
+                .WithMany(p => p.SchoolClasses)
+                .HasForeignKey(c => c.PsychologistId);
+
             modelBuilder.Entity<TeacherClass>()
                 .HasKey(tc => new {tc.TeacherId, tc.SchoolClassId});
             modelBuilder.Entity<TeacherClass>()
