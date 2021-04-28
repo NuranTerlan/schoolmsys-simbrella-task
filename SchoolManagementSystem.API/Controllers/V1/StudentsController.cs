@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.API.Contracts;
+using SchoolManagementSystem.Application.Students.Commands;
 using SchoolManagementSystem.Application.Students.Queries;
 
 namespace SchoolManagementSystem.API.Controllers.V1
@@ -23,6 +24,22 @@ namespace SchoolManagementSystem.API.Controllers.V1
         {
             var query = new GetStudentByIdQuery {Id = studentId};
             return Ok(await Mediator.Send(query));
+        }
+
+        [HttpPost(ApiRoutesV1.Students.Update)]
+        public async Task<IActionResult> IncreaseAbsentMark([FromRoute] string studentId,
+            [FromBody] IncreaseStudentAbsentMarkCommand command)
+        {
+            command.StudentId = studentId;
+            return Ok(await Mediator.Send(command));
+        }
+
+        [HttpPost(ApiRoutesV1.Students.Update)]
+        public async Task<IActionResult> DecreaseAbsentMark([FromRoute] string studentId,
+            [FromBody] DecreaseStudentAbsentMarkCommand command)
+        {
+            command.StudentId = studentId;
+            return Ok(await Mediator.Send(command));
         }
     }
 }
