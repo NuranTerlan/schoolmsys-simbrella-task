@@ -26,7 +26,7 @@ namespace SchoolManagementSystem.API.Controllers.V1
             return Ok(await Mediator.Send(query));
         }
 
-        [HttpPost(ApiRoutesV1.Students.Update)]
+        [HttpPost(ApiRoutesV1.Students.IncreaseAbsentMark)]
         public async Task<IActionResult> IncreaseAbsentMark([FromRoute] string studentId,
             [FromBody] IncreaseStudentAbsentMarkCommand command)
         {
@@ -34,7 +34,7 @@ namespace SchoolManagementSystem.API.Controllers.V1
             return Ok(await Mediator.Send(command));
         }
 
-        [HttpPost(ApiRoutesV1.Students.Update)]
+        [HttpPost(ApiRoutesV1.Students.DecreaseAbsentMark)]
         public async Task<IActionResult> DecreaseAbsentMark([FromRoute] string studentId,
             [FromBody] DecreaseStudentAbsentMarkCommand command)
         {
