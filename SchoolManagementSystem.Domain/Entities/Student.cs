@@ -6,6 +6,7 @@ namespace SchoolManagementSystem.Domain.Entities
     public class Student : ApplicationUser
     {
         public byte AveragePerformanceForYear { get; set; }
+        public short AbsentMarkCount { get; set; }
 
         [Required]
         public int? SchoolClassId { get; set; }
