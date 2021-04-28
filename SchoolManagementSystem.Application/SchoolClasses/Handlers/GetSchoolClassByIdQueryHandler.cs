@@ -24,6 +24,7 @@ namespace SchoolManagementSystem.Application.SchoolClasses.Handlers
         public async Task<Response<SchoolClassDto>> Handle(GetSchoolClassByIdQuery request, CancellationToken cancellationToken)
         {
             var schoolClass = await _context.SchoolClasses.AsNoTracking()
+                .Include(c => c.Students)
                 .FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
 
             if (schoolClass is null)
