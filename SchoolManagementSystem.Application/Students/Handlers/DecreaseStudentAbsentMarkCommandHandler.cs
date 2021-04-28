@@ -38,6 +38,14 @@ namespace SchoolManagementSystem.Application.Students.Handlers
             }
 
             student.AbsentMarkCount -= request.Count;
+            _context.Students.Update(student);
+
+            var isUpdated = await _context.SaveChangesAsync(cancellationToken);
+            if (isUpdated == 0)
+            {
+                return Response.Fail<StudentDto>("Can not update entity!");
+            }
+
             var result = _mapper.Map<StudentDto>(student);
             return Response.Success<StudentDto>(result,
                 $"{request.Count} absent mark is deleted from student ID#{request.StudentId} context");
