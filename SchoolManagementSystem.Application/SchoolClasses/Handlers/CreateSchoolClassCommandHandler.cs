@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,16 @@ namespace SchoolManagementSystem.Application.SchoolClasses.Handlers
 
         public async Task<Response<SchoolClassDto>> Handle(CreateSchoolClassCommand request, CancellationToken cancellationToken)
         {
+            var classExist = await _context.SchoolClasses.AsNoTracking()
+                .SingleOrDefaultAsync(c => 
+                        c.Title.ToLower().Equals(request.Title.ToLower()), 
+                    cancellationToken);
+
+            if (classExist != null)
+            {
+                return Response.Fail<SchoolClassDto>($"Class {request.Title} is already created!");
+            }
+
             var psychologist = await _context.Psychologists.AsNoTracking()
                 .SingleOrDefaultAsync(c => c.Id == request.PsychologistId,
                     cancellationToken);
