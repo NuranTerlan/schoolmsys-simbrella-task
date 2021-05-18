@@ -12,7 +12,6 @@ namespace SchoolManagementSystem.Application.SchoolClasses.DTOs
         public DateTime? LastModifiedOn { get; set; }
         public string Title { get; set; }
         public string RoomNumber { get; set; }
-        public IList<Student> Students { get; set; }
         public string PsychologistId { get; set; }
     }
 }
